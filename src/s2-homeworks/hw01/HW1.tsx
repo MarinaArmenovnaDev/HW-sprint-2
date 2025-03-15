@@ -4,6 +4,7 @@ import MessageSender from './message-sender/MessageSender'
 import s2 from '../../s1-main/App.module.css'
 import FriendMessage from './friend-message/FriendMessage'
 import avatar from './avatar.png'
+import message from "./message/Message";
 
 /*
 * 1 - описать тип MessageType
@@ -14,7 +15,21 @@ import avatar from './avatar.png'
 * */
 
 // нужно создать правильный тип вместо any
-export type MessageType = any
+export type UserType = {
+    avatar: typeof avatar
+    name: string
+}
+
+export type Message = {
+    text: string
+    time: string
+}
+
+export type MessageType = {
+    id: number
+    user: UserType
+    message: Message
+}
 
 // структуру объекта не менять
 export const message0: MessageType = {
@@ -24,7 +39,7 @@ export const message0: MessageType = {
         name: 'Some Name',  // можно менять
     },
     message: {
-        text: 'some textsome textsome textsome textsome textsome textsome text', // можно менять
+        text: 'some new text', // можно менять
         time: '22:00', // можно менять
     },
 }
