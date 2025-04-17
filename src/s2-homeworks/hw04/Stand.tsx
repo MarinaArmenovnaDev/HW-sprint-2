@@ -14,27 +14,28 @@ const Stand = () => {
         <div id={'hw4-stand'} className={s.stand}>
             <div className={s.inputs}>
                 {/*совместим со старым кодом:*/}
-                <div>
-                    <SuperInputText
-                        id={'hw4-super-input-like-old'}
-                        value={stateForAllInputs}
-                        onChange={(e) => setValue(e.currentTarget.value)}
-                    />
-                </div>
+                {/*<div>*/}
+                {/*    <SuperInputText*/}
+                {/*        id={'hw4-super-input-like-old'}*/}
+                {/*        value={stateForAllInputs}*/}
+                {/*        onChange={(e) => setValue(e.currentTarget.value)}*/}
+                {/*    />*/}
+                {/*</div>*/}
                 {/*инпут с ошибкой:*/}
-                <div>
+                <div className={"inputWrapper"}>
                     <SuperInputText
                         id={'hw4-super-input-with-error'}
                         value={stateForAllInputs}
                         onChangeText={setValue}
                         error={error}
                         onEnter={() => {
-                            setError(
-                                stateForAllInputs.trim()
-                                    ? ''
-                                    : 'Error'
-                            )
-                            setValue('')
+                            if(stateForAllInputs.trim().length === 0) {
+                                setError("Error")
+                            }
+                            else {
+                                setError('')
+                                setValue('')
+                            }
                         }}
                     />
                 </div>
