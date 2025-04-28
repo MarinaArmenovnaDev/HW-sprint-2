@@ -48,6 +48,20 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
         onEnter() // то вызвать его
     }
 
+    const inputClasses = [
+        'input',                  // Обязательный класс
+        'superInput',             // Обязательный класс
+        s.input,                  // Базовый стиль из модуля
+        error ? s.errorInput : s.superInput, // Условные стили
+        className                 // Дополнительные классы
+    ].filter(Boolean).join(' ')
+
+    const spanClasses = [
+        s.error,
+        spanClassName
+    ].filter(Boolean).join(' ')
+
+
     const finalSpanClassName = s.error
         + (spanClassName ? ' ' + spanClassName : '')
     const finalInputClassName = s.input
@@ -61,12 +75,12 @@ const SuperInputText: React.FC<SuperInputTextPropsType> = (
                 type={'text'}
                 onChange={onChangeCallback}
                 onKeyDown={onKeyDownCallback}
-                className={finalInputClassName}
+                className={inputClasses}
                 {...restProps} // отдаём инпуту остальные пропсы если они есть (value например там внутри)
             />
             <span
                 id={id ? id + '-span' : undefined}
-                className={finalSpanClassName} >
+                className={spanClasses} >
                 {error}
             </span>
         </div>
