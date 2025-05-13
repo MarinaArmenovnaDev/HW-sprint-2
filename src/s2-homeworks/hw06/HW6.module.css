@@ -1,5 +1,15 @@
 .buttonsContainer {
+    padding: 24px 0 0 70px;
+    display: flex;
+    gap: 24px;
+    min-width: 129px;
+    height: 30px;
+
+    :first-child{
+        color: white;
+    }
 }
 
 .editableSpanContainer {
+    padding: 70px 0 0 70px;
 }
