@@ -1,23 +1,72 @@
 .item {
+    font: 300 14px "Roboto", sans-serif;
+    color: #000;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .item:last-of-type {
+   border: none;
 }
 
 .users {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+
 }
 
 .buttonsContainer {
+    padding: 70px 0 18px 70px;
+    text-align: right;
 }
 
+.buttonsContainer button {
+    width: 101px;
+    height: 30px;
+    padding: 2px;
+    font: 600 14px / 1.42857 "Montserrat", sans-serif;
+    color:#0066cc ;
+    background-color: transparent;
+    border-radius: 3px;
+    border: 1px solid #0066cc;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+
+   &+& {
+       margin-left: 12px;
+   }
+
+}
+
+.buttonsContainer button.active{
+    background-color: #0066cc;
+    color: #fff;
+}
+
+
 .container {
+    max-width: 606px;
+    padding-left: 70px;
 }
 
 .thead {
+    padding: 10px;
+    font: 600 14px "Roboto", sans-serif;
+    color: #000;
+    text-align: left;
+    border: none;
+    border-radius: 3px;
+    background-color: #e5e5e5;
 }
 
 .nameCol {
+    padding: 10px;
+    height: 36px;
 }
 
 .ageCol {
+    font: 600 14px "Roboto", sans-serif;
+    color: #000;
+    border: none;
 }

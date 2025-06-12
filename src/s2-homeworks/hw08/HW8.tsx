@@ -36,20 +36,20 @@ const HW8 = () => {
     const sortUp = () => {
         setPeople(
             homeWorkReducer(initialPeople, {type: 'sort', payload: 'up'})
-        ) // в алфавитном порядке a.name > b.name
+        )
         setCurrentSort('up')
     }
 
     const sortDown = () => {
         setPeople(
             homeWorkReducer(initialPeople, {type: 'sort', payload: 'down'})
-        ) // в обратном порядке a.name < b.name}
+        )
         setCurrentSort('down')
     }
     const check18 = () => {
         setPeople(
             homeWorkReducer(initialPeople, {type: 'check', payload: 18})
-        ) // совершеннолетние
+        )
         setCurrentSort('18')
     }
 
@@ -62,21 +62,21 @@ const HW8 = () => {
                         <SuperButton
                             id={'hw8-button-up'}
                             onClick={sortUp}
-                            xType={currentSort === 'up' ? '' : 'secondary'}
+                            className={currentSort === 'up' ? s.active : ''}
                         >
                             Sort up
                         </SuperButton>
                         <SuperButton
                             id={'hw8-button-down'}
                             onClick={sortDown}
-                            xType={currentSort === 'down' ? '' : 'secondary'}
+                            className={currentSort === 'down' ? s.active : ''}
                         >
                             Sort down
                         </SuperButton>
                         <SuperButton
                             id={'hw8-button-18'}
                             onClick={check18}
-                            xType={currentSort === '18' ? '' : 'secondary'}
+                            className={currentSort === '18' ? s.active : ''}
                         >
                             Check 18+
                         </SuperButton>
