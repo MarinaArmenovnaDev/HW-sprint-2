@@ -16,7 +16,7 @@
 }
 
 .buttonsContainer {
-    padding: 70px 0 18px 70px;
+    padding-bottom:  18px ;
     text-align: right;
 }
 
@@ -30,7 +30,6 @@
     border-radius: 3px;
     border: 1px solid #0066cc;
     white-space: nowrap;
-    text-align: center;
     cursor: pointer;
 
    &+& {
@@ -47,7 +46,6 @@
 
 .container {
     max-width: 606px;
-    padding-left: 70px;
 }
 
 .thead {

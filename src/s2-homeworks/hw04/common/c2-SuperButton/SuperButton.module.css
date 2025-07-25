@@ -4,6 +4,8 @@
     height: 30px;
     border: none;
     cursor: pointer;
+    background: #06c;
+    color: #fff;
 }
 
 .default {
@@ -26,10 +28,10 @@
 
 .disabled, .button:disabled {
     width: 133px;
-    background: #004d99;
+    background: #06c;
     opacity: 0.5;
     cursor: not-allowed;
-    color: #002e5c;
+    color: white;
 }
 
 .default:hover {
