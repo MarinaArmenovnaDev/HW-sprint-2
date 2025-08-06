@@ -1,11 +1,7 @@
 import React from 'react'
 import { Slider, SliderProps } from '@mui/material'
 
-interface SuperRangeProps extends SliderProps {
-    value?: number | number[];
-}
-
-const SuperRange: React.FC<SuperRangeProps> = (props ) => {
+const SuperRange: React.FC<SliderProps> = (props ) => {
     return (
         <Slider
             sx={{
