@@ -1,8 +1,20 @@
 .container {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    padding: 20px;
+    max-width: 300px;
 }
 
 .wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .number {
+    font: 600 16px/1.25 "Montserrat", sans-serif;
+    color: #000;
+    min-width: 40px;
+    text-align: center;
 }
