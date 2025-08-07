@@ -5,26 +5,25 @@ import {restoreState} from '../hw06/localStorage/localStorage'
 import SuperRange from './common/c7-SuperRange/SuperRange'
 
 function HW11() {
-
-
     const [value1, setValue1] = useState(restoreState<number>('hw11-value1', 0))
     const [value2, setValue2] = useState(restoreState<number>('hw11-value2', 100))
-
-
 
     const change = (event: Event, value: number | number[]) => {
         if (Array.isArray(value)) {
             setValue1(value[0])
             setValue2(value[1])
         } else {
-            setValue1(value as number)
+            setValue1(value)
+            // Ensure value2 is always greater than value1
+            if (value >= value2) {
+                setValue2(Math.min(100, value + 1))
+            }
         }
     }
 
     return (
         <div id={'hw11'}>
             <div className={s2.hwTitle}>Homework #11</div>
-
             <div className={s2.hw}>
                 <div className={s.container}>
                     <div className={s.wrapper}>
@@ -33,6 +32,7 @@ function HW11() {
                             id={'hw11-single-slider'}
                             value={value1}
                             onChange={change}
+                            data-testid="single-slider"
                         />
                     </div>
                     <div className={s.wrapper}>
@@ -41,6 +41,7 @@ function HW11() {
                             id={'hw11-double-slider'}
                             value={[value1, value2]}
                             onChange={change}
+                            data-testid="double-slider"
                         />
                         <span id={'hw11-value-2'} className={s.number}>{value2}</span>
                     </div>
