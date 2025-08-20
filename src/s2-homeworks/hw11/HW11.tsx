@@ -14,7 +14,7 @@ function HW11() {
             setValue2(value[1])
         } else {
             setValue1(value)
-            // Ensure value2 is always greater than value1
+
             if (value >= value2) {
                 setValue2(Math.min(100, value + 1))
             }
