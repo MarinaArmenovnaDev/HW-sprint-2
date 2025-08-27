@@ -47,37 +47,35 @@ const HW13 = () => {
 
             })
             .catch((e) => {
-                debugger
-
-                const status = e.response.status
-                if(status === 500) {
-                    setIsLoading(true)
+                if (e.response?.status === 500) {
                     setCode("Ошибка 500!")
                     setImage(error500)
-                    setInfo(e.name)
-                    setText("эмитация ошибки на сервере ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)")
-                    setIsLoading(false)
+                    setInfo(e.response.data?.info)
+                    setText(e.response.data?.errorText )
                 }
-                if(status === 400) {
-                    setIsLoading(true)
+                else if (e.response?.status === 400) {
                     setCode("Ошибка 400!")
                     setImage(error400)
-                    setInfo(e.name)
-                    setText("Ты не отправил success в body вообще! ошибка 400 - обычно означает что скорее всего фронт отправил что-то не то на бэк!")
-                    setIsLoading(false)
-                }else{
-                    setIsLoading(true)
-                    setCode("Error!")
+                    setInfo(e.response.data?.info || e.name)
+                    setText(e.response.data?.errorText)
+                }
+                else if (e.code === 'ERR_NETWORK') {
+                    setCode("Network Error!")
+                    setImage(errorUnknown)
                     setInfo(e.name)
                     setText(e.message)
-                    setImage(errorUnknown)
-                    setIsLoading(false)
                 }
-
+                else {
+                    setCode("Error!")
+                    setImage(errorUnknown)
+                    setInfo(e.name)
+                    setText(e.message)
+                }
+            }) .finally(() => {
+            setIsLoading(false)
+        })
 
                 // дописать
-
-            })
     }
 
     return (
