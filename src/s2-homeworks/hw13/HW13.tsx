@@ -8,6 +8,7 @@ import error400 from './images/400.svg'
 import error500 from './images/500.svg'
 import errorUnknown from './images/error.svg'
 
+
 /*
 * 1 - дописать функцию send
 * 2 - дизэйблить кнопки пока идёт запрос
@@ -19,6 +20,7 @@ const HW13 = () => {
     const [text, setText] = useState('')
     const [info, setInfo] = useState('')
     const [image, setImage] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
 
     const send = (x?: boolean | null) => () => {
         const url =
@@ -30,16 +32,49 @@ const HW13 = () => {
         setImage('')
         setText('')
         setInfo('...loading')
+        setIsLoading(true)
 
         axios
             .post(url, {success: x})
             .then((res) => {
+                setIsLoading(false)
                 setCode('Код 200!')
                 setImage(success200)
+                setInfo(res.data.info)
+                setText(res.data.errorText)
                 // дописать
+
 
             })
             .catch((e) => {
+                debugger
+
+                const status = e.response.status
+                if(status === 500) {
+                    setIsLoading(true)
+                    setCode("Ошибка 500!")
+                    setImage(error500)
+                    setInfo(e.name)
+                    setText("эмитация ошибки на сервере ошибка 500 - обычно означает что что-то сломалось на сервере, например база данных)")
+                    setIsLoading(false)
+                }
+                if(status === 400) {
+                    setIsLoading(true)
+                    setCode("Ошибка 400!")
+                    setImage(error400)
+                    setInfo(e.name)
+                    setText("Ты не отправил success в body вообще! ошибка 400 - обычно означает что скорее всего фронт отправил что-то не то на бэк!")
+                    setIsLoading(false)
+                }else{
+                    setIsLoading(true)
+                    setCode("Error!")
+                    setInfo(e.name)
+                    setText(e.message)
+                    setImage(errorUnknown)
+                    setIsLoading(false)
+                }
+
+
                 // дописать
 
             })
@@ -55,6 +90,7 @@ const HW13 = () => {
                         id={'hw13-send-true'}
                         onClick={send(true)}
                         xType={'secondary'}
+                     disabled={isLoading}
                         // дописать
 
                     >
@@ -64,6 +100,7 @@ const HW13 = () => {
                         id={'hw13-send-false'}
                         onClick={send(false)}
                         xType={'secondary'}
+                        disabled={isLoading}
                         // дописать
 
                     >
@@ -73,6 +110,7 @@ const HW13 = () => {
                         id={'hw13-send-undefined'}
                         onClick={send(undefined)}
                         xType={'secondary'}
+                        disabled={isLoading}
                         // дописать
 
                     >
@@ -82,6 +120,7 @@ const HW13 = () => {
                         id={'hw13-send-null'}
                         onClick={send(null)} // имитация запроса на не корректный адрес
                         xType={'secondary'}
+                        disabled={isLoading}
                         // дописать
 
                     >

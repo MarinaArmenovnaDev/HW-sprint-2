@@ -1,22 +1,52 @@
 .buttonsContainer {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 30px;
 }
 
 .responseContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    min-height: 200px;
+    padding: 20px;
 }
 
 .imageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image {
+    max-height: 200px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.textContainer{
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 400px;
 }
 
 .code {
+    font: 500 30px "Montserrat", sans-serif;
+    color: #000;
+    padding-bottom: 12px;
 }
 
 .text {
+    font: 500 16px "Montserrat", sans-serif;
+    color: #000;
+    line-height: 1.4;
 }
+
 .info {
+    font: 400 14px "Montserrat", sans-serif;
+    color: #666;
+    font-style: italic;
 }
