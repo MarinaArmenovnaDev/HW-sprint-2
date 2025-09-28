@@ -1,10 +1,5 @@
 import React from 'react'
 
-// добавить в проект иконки и импортировать
-const downIcon = '[\\/]'
-const upIcon = '[/\\]'
-const noneIcon = '[--]'
-
 export type SuperSortPropsType = {
     id?: string
     sort: string
@@ -13,8 +8,13 @@ export type SuperSortPropsType = {
 }
 
 export const pureChange = (sort: string, down: string, up: string) => {
-    // пишет студент, sort: (click) => down (click) => up (click) => '' (click) => down ...
-    return up // исправить
+    if (sort === down) {
+        return up
+    } else if (sort === up) {
+        return ''
+    } else {
+        return down
+    }
 }
 
 const SuperSort: React.FC<SuperSortPropsType> = (
@@ -29,24 +29,40 @@ const SuperSort: React.FC<SuperSortPropsType> = (
         onChange(pureChange(sort, down, up))
     }
 
-    const icon = sort === down
-        ? downIcon
-        : sort === up
-            ? upIcon
-            : noneIcon
-
     return (
         <span
             id={id + '-sort-' + value}
             onClick={onChangeCallback}
+            style={{ cursor: 'pointer', display: 'inline-flex', flexDirection: 'column', marginLeft: '5px' }}
         >
-            {/*сделать иконку*/}
-            {/*<img*/}
-            {/*    id={id + '-icon-' + sort}*/}
-            {/*    src={icon}*/}
-            {/*/>*/}
+            {/* Стрелка вверх */}
+            <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style={{ marginBottom: '1px' }}
+            >
+                <path
+                    d="M5 0.5L0 5.5L10 5.5L5 0.5Z"
+                    fill={sort === up ? '#000' : '#adabac'}
+                />
+            </svg>
 
-            {icon} {/*а это убрать*/}
+            {/* Стрелка вниз */}
+            <svg
+                width="10"
+                height="6"
+                viewBox="0 0 10 6"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M5 5.5L10 0.5L0 0.5L5 5.5Z"
+                    fill={sort === down ? '#000' : '#adabac'}
+                />
+            </svg>
         </span>
     )
 }

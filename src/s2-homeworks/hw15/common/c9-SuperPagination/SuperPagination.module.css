@@ -1,11 +1,11 @@
 .pagination {
     display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.text1 {
-
-}
-
-.text2 {
-
+.text1, .text2 {
+    font: 14px "Roboto", sans-serif;
+    color: #555;
 }

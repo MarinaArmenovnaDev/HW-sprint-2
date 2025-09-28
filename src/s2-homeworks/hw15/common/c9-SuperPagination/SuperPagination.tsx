@@ -16,14 +16,16 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = (
         page, itemsCountForPage, totalCount, onChange, id = 'hw15',
     }
 ) => {
-    const lastPage = 10 // пишет студент // вычислить количество страниц
+    const lastPage = Math.ceil(totalCount / itemsCountForPage) // пишет студент // вычислить количество страниц
 
     const onChangeCallback = (event: any, page: number) => {
-        // пишет студент
+
+        onChange(page, itemsCountForPage)
     }
 
     const onChangeSelect = (event: any) => {
-        // пишет студент
+        const newCount = Number(event.currentTarget.value)
+        onChange(1, newCount)
     }
 
     return (
@@ -31,6 +33,32 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = (
             <Pagination
                 id={id + '-pagination'}
                 sx={{
+                    '& .MuiPaginationItem-root': {
+                        fontFamily: 'Roboto, sans-serif',
+                        fontSize: '14px',
+                        color: '#000000',
+                        minWidth: '24px',
+                        height: '24px',
+                        margin: '0 2px',
+                        borderRadius: '2px',
+                        border: '1px solid #D9D9D9',
+                        backgroundColor: '#FFFFFF',
+                        '&:hover': {
+                            backgroundColor: '#F5F5F5',
+                            borderColor: '#366EFF',
+                        },
+                    },
+                    '& .MuiPaginationItem-page.Mui-selected': {
+                        backgroundColor: '#0066CC',
+                        color: '#FFFFFF',
+                        borderColor: '#0066CC',
+                        '&:hover': {
+                            backgroundColor: '#0052CC',
+                        },
+                    },
+                    '& .MuiPaginationItem-ellipsis': {
+                        color: '#000000',
+                    },
                     // стили для Pagination // пишет студент
                 }}
                 page={page}

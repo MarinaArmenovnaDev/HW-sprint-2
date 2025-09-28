@@ -3,7 +3,7 @@ import s2 from '../../s1-main/App.module.css'
 import s from './HW14.module.css'
 import axios from 'axios'
 import SuperDebouncedInput from './common/c8-SuperDebouncedInput/SuperDebouncedInput'
-import {useSearchParams} from 'react-router-dom'
+import {useSearchParams} from "react-router-dom";
 
 /*
 * 1 - дописать функцию onChangeTextCallback в SuperDebouncedInput
@@ -30,33 +30,47 @@ const HW14 = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<string[]>([])
 
+    // Загрузка начальных данных при монтировании
+    useEffect(() => {
+        const urlFind = searchParams.get('find')
+        if (urlFind) {
+            sendQuery(urlFind) // Если есть параметр в URL, ищем по нему
+        } else {
+            sendQuery('') // Если нет параметра, загружаем весь список
+        }
+    }, [])
+
     const sendQuery = (value: string) => {
-        setLoading(true)
+        if (value !== '') {
+            setLoading(true)
+        }
         getTechs(value)
             .then((res) => {
+                setLoading(false)
+                if(res && res.data) {
+                    setTechs(res.data.techs)
+                }
                 // делает студент
-
                 // сохранить пришедшие данные
-
-                //
-            })
+            }).catch(() => {
+            setLoading(false)
+            setTechs([])
+        })
     }
 
     const onChangeText = (value: string) => {
         setFind(value)
         // делает студент
-
+        if (value) {
+            setSearchParams({ find: value })
+        } else {
+            // Если значение пустое, удаляем параметр
+            setSearchParams({})
+        }
         // добавить/заменить значение в квери урла
-        // setSearchParams(
-
-        //
     }
 
-    useEffect(() => {
-        const params = Object.fromEntries(searchParams)
-        sendQuery(params.find || '')
-        setFind(params.find || '')
-    }, [])
+
 
     const mappedTechs = techs.map(t => (
         <div key={t} id={'hw14-tech-' + t} className={s.tech}>
