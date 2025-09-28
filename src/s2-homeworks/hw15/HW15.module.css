@@ -59,6 +59,9 @@
     align-items: center;
     gap: 8px;
 }
+.techHeader:hover{
+    cursor: pointer;
+}
 
 .developerHeader {
     width: 50vw;

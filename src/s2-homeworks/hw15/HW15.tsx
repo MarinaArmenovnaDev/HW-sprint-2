@@ -43,7 +43,7 @@ const HW15 = () => {
     const [sort, setSort] = useState('')
     const [page, setPage] = useState(1)
     const [count, setCount] = useState(4)
-    const [isLoading, setLoading] = useState(false) // исправлено: idLoading -> isLoading
+    const [idLoading, setLoading] = useState(false)
     const [totalCount, setTotalCount] = useState(100)
     const [searchParams, setSearchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
@@ -132,14 +132,14 @@ const HW15 = () => {
                 />
 
                 <div className={s.tableContainer}>
-                    {isLoading && (
+                    {idLoading && (
                         <div className={s.loadingOverlay}>
                             <CircularProgress size="3rem"/>
                         </div>
                         )}
 
 
-                    <div className={`${s.tableContent} ${isLoading ? s.loading : ''}`}>
+                    <div className={`${s.tableContent} ${idLoading ? s.loading : ''}`}>
                         <div className={s.rowHeader}>
                             <div className={s.techHeader}>
                                 tech
